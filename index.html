@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSO</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header id="global-header">
+        <div class="logo-container">
+            <img src="assets/pulso_logo.png" alt="PULSO" class="logo-img">
+        </div>
+        <nav>
+            <a href="#" class="nav-item active" data-page="0">
+                <span class="nav-dot"></span>INICIO
+            </a>
+            <a href="#" class="nav-item" data-page="1">
+                <span class="nav-dot"></span>PROYECTOS
+            </a>
+            <a href="#" class="nav-item" data-page="2">
+                <span class="nav-dot"></span>NOSOTROS
+            </a>
+            <a href="#" class="nav-item" data-page="3">
+                <span class="nav-dot"></span>CONTACTO
+            </a>
+            <a href="#" class="nav-item" data-page="4">
+                <span class="nav-dot"></span>MOTION GRAPHICS
+            </a>
+        </nav>
+    </header>
+    <div class="scroll-container">
+        <!-- Página 1: Inicio -->
+        <section class="page page-1">
+            <img src="assets/image_home.png" alt="Home" class="home-image">
+
+            <main>
+            </main>
+
+            <div class="cta-section">
+                <div class="cta-arrow">
+                    <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 500"
+                        class="arrow-circle">
+                        <path
+                            d="M228.58.83c186.98-13.06,324.12,170.67,251.76,345.48-78.08,188.63-340.89,207.3-445.44,31.62C-58.6,220.81,45.84,13.59,228.58.83ZM380.53,268.25l-135,135.54c-11.6,18.46,11.12,37.54,27.37,22.91l142.19-142.3c17.82-23.18,15.9-50.09-2.75-71.95-41.07-48.14-96.51-91.12-138.9-138.89-15.82-15.09-40.83,4.69-27.38,22.91l135.58,136.08H84.33c-6.93,0-14.2,11.65-14.03,18.41s7.22,17.29,14.03,17.29h296.2Z" />
+                    </svg>
+                </div>
+                <p class="cta-text">EL CAMBIO NOS MUEVE</p>
+            </div>
+
+            <footer>
+                <div class="social-links">
+                    <a href="#" class="social-link">INSTAGRAM</a>
+                    <span class="separator">|</span>
+                    <a href="#" class="social-link">ARTSTATION</a>
+                </div>
+            </footer>
+        </section>
+
+        <!-- Página 2: Proyectos -->
+        <section class="page page-2">
+            <div class="page2-container">
+                <div class="page2-left">
+                    <img src="assets/page2-img.png" alt="ACTIVÁ" class="page2-image">
+                </div>
+                <div class="page2-right">
+                    <h1 class="proyectos-title">PROYECTOS</h1>
+                    <ul class="proyectos-list">
+                        <li class="proyectos-item">
+                            <span>3D</span>
+                            <span class="arrow arrow-purple">→</span>
+                        </li>
+                        <li class="proyectos-item">
+                            <span>MOTION GRAPHICS</span>
+                            <span class="arrow arrow-red">→</span>
+                        </li>
+                        <li class="proyectos-item">
+                            <span>DISEÑO GÁFICO</span>
+                            <span class="arrow arrow-orange">→</span>
+                        </li>
+                        <li class="proyectos-item">
+                            <span>DESARROLLO WEB</span>
+                            <span class="arrow arrow-orange">→</span>
+                        </li>
+                        <li class="proyectos-item">
+                            <span>CAMPAÑA PUBLICITARIA</span>
+                            <span class="arrow arrow-red">→</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página 3: Modelado 3D -->
+        <section class="page page-3">
+
+            <div class="page3-main">
+                <!-- Vistas del sintetizador principal -->
+                <div class="pictures-views">
+                    <div class="picture-view picture-view-left">
+                        <img src="" alt="" class="picture-image" id="picture-left">
+                    </div>
+                    <div class="picture-view picture-view-center">
+                        <img src="" alt="" class="picture-image" id="picture-center">
+                    </div>
+                    <div class="picture-view picture-view-right">
+                        <img src="" alt="" class="picture-image" id="picture-right">
+                    </div>
+                </div>
+
+                <!-- Galería de thumbnails -->
+                <div class="thumbnails-gallery">
+                    <div class="thumbnail-item" data-folder="tele" data-name="tele">
+                        <img src="assets/3D/tele/tele1.jpg" alt="Tele" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/tele/tele.gif" alt="Tele" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="camara" data-name="camara">
+                        <img src="assets/3D/camara/cam1.jpg" alt="Cámara" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/camara/cam.gif" alt="Cámara" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="teclado" data-name="teclado">
+                        <img src="assets/3D/teclado/teclado1.jpg" alt="Teclado" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/teclado/teclado.gif" alt="Teclado" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="telefono" data-name="telefono">
+                        <img src="assets/3D/telefono/telefono1.jpg" alt="Teléfono"
+                            class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/telefono/telefono.gif" alt="Teléfono" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="tocadiscos" data-name="tocadiscos">
+                        <img src="assets/3D/tocadiscos/tocadiscos1.jpg" alt="Tocadiscos"
+                            class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/tocadiscos/tocadiscos.gif" alt="Tocadiscos"
+                            class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="bender" data-name="bender">
+                        <img src="assets/3D/bender/bender1.jpg" alt="Bender" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/bender/bender.gif" alt="Bender" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="robot" data-name="robot">
+                        <img src="assets/3D/robot/robot1.jpg" alt="Robot" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/robot/robot.gif" alt="Robot" class="thumbnail-image thumbnail-gif">
+                    </div>
+                    <div class="thumbnail-item" data-folder="auris" data-name="auris">
+                        <img src="assets/3D/auris/auris1.jpg" alt="Auris" class="thumbnail-image thumbnail-jpg">
+                        <img src="assets/3D/auris/auris.gif" alt="Auris" class="thumbnail-image thumbnail-gif">
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page3-footer">
+                <div class="page3-footer-content">
+                    <div class="modelado-oval">
+                        <span>MODELADO 3D</span>
+                    </div>
+                    <p class="page3-placeholder-text">
+                        LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR.
+                    </p>
+                    <div class="page3-social-links">
+                        <a href="#" class="social-link">INSTAGRAM</a>
+                        <a href="#" class="social-link">ARTSTATION</a>
+                    </div>
+                </div>
+                <div class="purple-curve"></div>
+            </footer>
+        </section>
+
+        <!-- Página 4: Motion Graphics -->
+        <section class="page page-4">
+            <!-- Efectos de fondo -->
+            <!-- <div class="page4-bg-effects">
+                <div class="bg-gradient-1"></div>
+                <div class="bg-gradient-2"></div>
+                <div class="bg-gradient-3"></div>
+                <div class="bg-circle-1"></div>
+                <div class="bg-circle-2"></div>
+                <div class="bg-circle-3"></div>
+            </div> -->
+            <div class="page4-main">
+                <!-- Área principal para mostrar el video -->
+                <div class="motion-main-content">
+                    <h1 class="motion-title">MOTION<br>GRAPHICS</h1>
+                    <div class="main-video-container" id="main-video-container">
+                        <video id="main-video" class="main-video-display" controls>
+                            Tu navegador no soporta el elemento video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="page4-footer">
+                <!-- Galería de videos en el footer -->
+                <div class="motion-gallery">
+                    <div class="videos-grid">
+                        <div class="video-thumbnail" data-video="assets/motion/HyperOS.mp4" data-name="HyperOS">
+                            <video class="thumbnail-video" muted loop>
+                                <source src="assets/motion/HyperOS.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <span class="video-name">HyperOS</span>
+                            </div>
+                        </div>
+                        <div class="video-thumbnail" data-video="assets/motion/league.mp4" data-name="League">
+                            <video class="thumbnail-video" muted loop>
+                                <source src="assets/motion/league.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <span class="video-name">League</span>
+                            </div>
+                        </div>
+                        <div class="video-thumbnail" data-video="assets/motion/madmen.mp4" data-name="Mad Men">
+                            <video class="thumbnail-video" muted loop>
+                                <source src="assets/motion/madmen.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <span class="video-name">Mad Men</span>
+                            </div>
+                        </div>
+                        <div class="video-thumbnail" data-video="assets/motion/pinterest.mp4" data-name="Pinterest">
+                            <video class="thumbnail-video" muted loop>
+                                <source src="assets/motion/pinterest.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <span class="video-name">Pinterest</span>
+                            </div>
+                        </div>
+                        <div class="video-thumbnail" data-video="assets/motion/ytmusic.mp4" data-name="YT Music">
+                            <video class="thumbnail-video" muted loop>
+                                <source src="assets/motion/ytmusic.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-overlay">
+                                <span class="video-name">YT Music</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page4-footer-content">
+                    <div class="page4-social-links">
+                        <a href="#" class="social-link">INSTAGRAM</a>
+                        <a href="#" class="social-link">ARTSTATION</a>
+                    </div>
+                </div>
+                <div class="red-curve"></div>
+            </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
