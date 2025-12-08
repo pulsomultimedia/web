@@ -16,6 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Convertir scroll vertical a horizontal
     // Capturar evento en window para asegurar que funcione
     window.addEventListener('wheel', function (e) {
+        // Permitir scroll normal si estamos sobre el collage de Toku Brand
+        const tokuCollage = document.getElementById('toku-collage');
+        if (tokuCollage && tokuCollage.contains(e.target) && tokuCollage.classList.contains('show')) {
+            // Verificar si el collage realmente necesita scroll
+            if (tokuCollage.scrollHeight > tokuCollage.clientHeight) {
+                // Dejar que el evento se propague normalmente para el scroll vertical del div
+                return;
+            }
+        }
+
         e.preventDefault();
         e.stopPropagation();
 
@@ -258,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Reproducir video en miniatura al hacer hover
     videoThumbnails.forEach(thumbnail => {
         const video = thumbnail.querySelector('.thumbnail-video');
-        
+
         thumbnail.addEventListener('mouseenter', () => {
             if (video) {
                 video.currentTime = 0;
@@ -275,25 +285,111 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mostrar video en el área principal al hacer click
     videoThumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function() {
+        thumbnail.addEventListener('click', function () {
             const videoSrc = this.getAttribute('data-video');
             const videoName = this.getAttribute('data-name');
-            
+
             if (videoSrc && mainVideo) {
                 // Cargar y mostrar el video
                 mainVideo.src = videoSrc;
                 mainVideo.load();
                 mainVideo.classList.add('active');
-                
+
                 // Remover clase active de todos los thumbnails
                 videoThumbnails.forEach(thumb => thumb.classList.remove('active'));
                 // Agregar clase active al thumbnail seleccionado
                 this.classList.add('active');
-                
+
                 // Reproducir automáticamente
                 mainVideo.play().catch(e => console.log('Error al reproducir video:', e));
             }
         });
     });
+    // Página 5: Diseño Gráfico
+    const page5 = document.querySelector('.page-5');
+    const graficoItems = document.querySelectorAll('.grafico-item');
+    const graficoDisplay = document.getElementById('grafico-main-image');
+
+    // Función para cambiar imagen con transición
+    function changeGraficoImage(newSrc) {
+        if (!graficoDisplay) return;
+
+        // 1. Ocultar imagen actual
+        graficoDisplay.classList.remove('show');
+
+        // 2. Esperar a que termine la transición de salida
+        setTimeout(() => {
+            // 3. Cambiar el source
+            graficoDisplay.src = newSrc;
+
+            // 4. Esperar un breve momento para que cargue (opcional, mejor con evento load)
+            graficoDisplay.onload = () => {
+                // 5. Mostrar nueva imagen
+                graficoDisplay.classList.add('show');
+            };
+
+            // Fallback por si la imagen ya está en cache y no dispara load
+            if (graficoDisplay.complete) {
+                graficoDisplay.classList.add('show');
+            }
+
+        }, 300); // 300ms coincide o es menor a la transición CSS
+    }
+
+    // Eventos click para la lista
+    graficoItems.forEach(item => {
+        item.addEventListener('click', function () {
+            if (this.classList.contains('active')) return;
+
+            // Actualizar estado activo
+            graficoItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+
+            const name = this.getAttribute('data-name');
+            const tokuCollage = document.getElementById('toku-collage');
+
+            if (name === 'Toku Brand') {
+                // Mostrar collage, ocultar imagen principal
+                if (tokuCollage) tokuCollage.classList.add('show');
+                if (graficoDisplay) graficoDisplay.classList.remove('show');
+            } else {
+                // Ocultar collage
+                if (tokuCollage) tokuCollage.classList.remove('show');
+
+                // Procesar cambio de imagen normal
+                const newImage = this.getAttribute('data-image');
+                if (newImage) {
+                    changeGraficoImage(newImage);
+                }
+            }
+        });
+    });
+
+    // Inicializar primera imagen mostrada
+    if (graficoDisplay) {
+        // Asegurar que se muestre al inicio si ya está cargada
+        setTimeout(() => {
+            const activeItem = document.querySelector('.grafico-item.active');
+            if (activeItem && activeItem.getAttribute('data-name') !== 'Toku Brand') {
+                graficoDisplay.classList.add('show');
+            }
+        }, 500);
+    }
+
+
+    // Observer para animar entrada de la página 5
+    if (page5) {
+        const page5Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    page5.classList.add('is-visible');
+                } else {
+                    page5.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        page5Observer.observe(page5);
+    }
 });
 
