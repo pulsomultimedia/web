@@ -391,5 +391,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         page5Observer.observe(page5);
     }
+    // Scroll a pagina 2 al clickear la flecha o el texto
+    const ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+        ctaSection.addEventListener('click', () => {
+            const pageWidth = window.innerWidth;
+            scrollContainer.scrollTo({
+                left: pageWidth,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
 
