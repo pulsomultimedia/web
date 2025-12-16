@@ -531,5 +531,53 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { threshold: 0.3 });
         page6Observer.observe(page6);
     }
+
+    // Página 7: Campaña Publicitaria
+    const page7 = document.querySelector('.page-7');
+
+    // Observer para animar entrada de página 7
+    if (page7) {
+        const page7Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    page7.classList.add('is-visible');
+                } else {
+                    page7.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        page7Observer.observe(page7);
+    }
+
+    // Manejar clicks en los items de proyectos para navegar a las páginas correspondientes
+    const proyectosItems = document.querySelectorAll('.proyectos-item');
+
+    proyectosItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const text = this.querySelector('span').textContent.trim();
+            let targetPage = -1;
+
+            // Mapear cada proyecto a su página correspondiente
+            if (text === '3D') {
+                targetPage = 2; // page-3
+            } else if (text === 'MOTION GRAPHICS') {
+                targetPage = 3; // page-4
+            } else if (text === 'DISEÑO GÁFICO') {
+                targetPage = 4; // page-5
+            } else if (text === 'DESARROLLO WEB') {
+                targetPage = 5; // page-6
+            } else if (text === 'CAMPAÑA PUBLICITARIA') {
+                targetPage = 6; // page-7
+            }
+
+            if (targetPage !== -1) {
+                const pageWidth = window.innerWidth;
+                scrollContainer.scrollTo({
+                    left: targetPage * pageWidth,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
 
