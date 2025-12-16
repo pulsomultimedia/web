@@ -309,29 +309,54 @@ document.addEventListener('DOMContentLoaded', function () {
     const page5 = document.querySelector('.page-5');
     const graficoItems = document.querySelectorAll('.grafico-item');
     const graficoDisplay = document.getElementById('grafico-main-image');
+    const graficoMockup = document.getElementById('grafico-mockup-image');
 
-    // Función para cambiar imagen con transición
-    function changeGraficoImage(newSrc) {
+    // Función para generar la ruta del mockup
+    function getMockupPath(imagePath) {
+        // Obtener el nombre base y la extensión
+        const lastDot = imagePath.lastIndexOf('.');
+        const basePath = imagePath.substring(0, lastDot);
+        // El mockup siempre es .jpg según los archivos existentes
+        return basePath + '_mockup.jpg';
+    }
+
+    // Función para cambiar imágenes con transición
+    function changeGraficoImages(newSrc) {
         if (!graficoDisplay) return;
 
-        // 1. Ocultar imagen actual
+        // 1. Ocultar imágenes actuales
         graficoDisplay.classList.remove('show');
+        if (graficoMockup) graficoMockup.classList.remove('show');
 
         // 2. Esperar a que termine la transición de salida
         setTimeout(() => {
-            // 3. Cambiar el source
+            // 3. Cambiar el source de la imagen principal
             graficoDisplay.src = newSrc;
 
-            // 4. Esperar un breve momento para que cargue (opcional, mejor con evento load)
-            graficoDisplay.onload = () => {
-                // 5. Mostrar nueva imagen
-                graficoDisplay.classList.add('show');
+            // 4. Cambiar el source del mockup
+            const mockupSrc = getMockupPath(newSrc);
+            if (graficoMockup) {
+                graficoMockup.src = mockupSrc;
+            }
+
+            // 5. Mostrar ambas imágenes cuando carguen
+            let imagesLoaded = 0;
+            const totalImages = graficoMockup ? 2 : 1;
+
+            const onImageLoaded = () => {
+                imagesLoaded++;
+                if (imagesLoaded >= totalImages) {
+                    graficoDisplay.classList.add('show');
+                    if (graficoMockup) graficoMockup.classList.add('show');
+                }
             };
 
-            // Fallback por si la imagen ya está en cache y no dispara load
-            if (graficoDisplay.complete) {
-                graficoDisplay.classList.add('show');
-            }
+            graficoDisplay.onload = onImageLoaded;
+            if (graficoMockup) graficoMockup.onload = onImageLoaded;
+
+            // Fallback por si las imágenes ya están en cache
+            if (graficoDisplay.complete) onImageLoaded();
+            if (graficoMockup && graficoMockup.complete) onImageLoaded();
 
         }, 300); // 300ms coincide o es menor a la transición CSS
     }
@@ -349,17 +374,18 @@ document.addEventListener('DOMContentLoaded', function () {
             const tokuCollage = document.getElementById('toku-collage');
 
             if (name === 'Toku Brand') {
-                // Mostrar collage, ocultar imagen principal
+                // Mostrar collage, ocultar imágenes
                 if (tokuCollage) tokuCollage.classList.add('show');
                 if (graficoDisplay) graficoDisplay.classList.remove('show');
+                if (graficoMockup) graficoMockup.classList.remove('show');
             } else {
                 // Ocultar collage
                 if (tokuCollage) tokuCollage.classList.remove('show');
 
-                // Procesar cambio de imagen normal
+                // Procesar cambio de imágenes
                 const newImage = this.getAttribute('data-image');
                 if (newImage) {
-                    changeGraficoImage(newImage);
+                    changeGraficoImages(newImage);
                 }
             }
         });
@@ -367,11 +393,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicializar primera imagen mostrada
     if (graficoDisplay) {
-        // Asegurar que se muestre al inicio si ya está cargada
+        // Asegurar que se muestren al inicio si ya están cargadas
         setTimeout(() => {
             const activeItem = document.querySelector('.grafico-item.active');
             if (activeItem && activeItem.getAttribute('data-name') !== 'Toku Brand') {
                 graficoDisplay.classList.add('show');
+                if (graficoMockup) graficoMockup.classList.add('show');
             }
         }, 500);
     }

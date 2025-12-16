@@ -953,14 +953,16 @@ footer {
     height: 80%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 8rem;
+    justify-content: center;
+    gap: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     position: relative;
     overflow: hidden;
 }
 
 .grafico-image {
-    max-width: 100%;
+    max-width: 45%;
     max-height: 100%;
     object-fit: contain;
     opacity: 0;
@@ -1122,7 +1124,6 @@ footer {
 
 /* Contenedor del video principal */
 .main-video-container {
-    width: 100%;
     max-width: 1400px;
     max-height: calc(100% - 4rem);
     aspect-ratio: 16/9;
@@ -1335,19 +1336,159 @@ footer {
     clip-path: ellipse(80% 60% at 80% 100%);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .pulso-3d {
-        font-size: 6rem;
-    }
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
 
+/* Tablet Large (1024px) */
+@media (max-width: 1024px) {
+
+    /* Header */
     header {
-        padding: 1.5rem;
+        padding: 0rem 2rem;
     }
 
     nav {
-        gap: 1.5rem;
-        font-size: 0.8rem;
+        gap: 3rem;
+        padding-right: 2rem;
+    }
+
+    .logo-img {
+        height: 80px;
+    }
+
+    /* Page 1 - Home */
+    .cta-section {
+        right: 2rem;
+        bottom: 30%;
+    }
+
+    .cta-text {
+        font-size: 1rem;
+    }
+
+    /* Page 2 - Proyectos */
+    .proyectos-title {
+        font-size: 7rem;
+    }
+
+    .proyectos-item {
+        font-size: 2.5rem;
+        gap: 1rem;
+    }
+
+    .page2-right {
+        padding: 2rem;
+    }
+
+    /* Page 3 - Modelado 3D */
+    .thumbnails-gallery {
+        padding: 0 2rem;
+        gap: 0.75rem;
+    }
+
+    .thumbnail-item {
+        flex: 0 0 150px;
+        height: 100px;
+        width: 150px;
+    }
+
+    .page3-footer {
+        min-height: 400px;
+        padding: 3rem 2rem;
+    }
+
+    .page3-footer-content {
+        margin-left: 2rem;
+    }
+
+    .modelado-oval {
+        width: 280px;
+        height: 80px;
+    }
+
+    .modelado-oval span {
+        font-size: 1.2rem;
+    }
+
+    .purple-curve {
+        width: 600px;
+        height: 450px;
+    }
+
+    /* Page 4 - Motion Graphics */
+    .motion-title {
+        font-size: 6rem;
+        top: 5rem;
+        left: 3rem;
+    }
+
+    .motion-main-content {
+        padding: 3rem 3rem 0;
+    }
+
+    .page4-footer {
+        height: 320px;
+    }
+
+    .page4-main {
+        height: calc(100vh - 320px);
+    }
+
+    .red-curve {
+        width: 600px;
+        height: 450px;
+    }
+
+    /* Page 5 - Diseño Gráfico */
+    .grafico-gallery-container {
+        flex: 0 0 30%;
+        padding: 2rem 0 2rem 3rem;
+    }
+
+    .grafico-title {
+        font-size: 6rem;
+        margin-bottom: 2rem;
+    }
+
+    .grafico-name {
+        font-size: 2rem;
+    }
+
+    .grafico-display-wrapper {
+        padding-left: 4rem;
+    }
+}
+
+/* Tablet Small (768px) */
+@media (max-width: 768px) {
+
+    /* Header */
+    header {
+        padding: 0.5rem 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    nav {
+        gap: 1rem;
+        padding-right: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-item {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+    }
+
+    /* Page 1 - Home */
+    .home-image {
+        max-width: 90%;
     }
 
     .cta-section {
@@ -1360,23 +1501,124 @@ footer {
         height: 60px;
     }
 
+    .cta-text {
+        font-size: 0.9rem;
+    }
+
     footer {
         padding: 1.5rem;
     }
 
+    .social-link {
+        font-size: 0.75rem;
+    }
+
+    /* Page 2 - Proyectos */
+    .page2-container {
+        flex-direction: column;
+    }
+
+    .page2-left {
+        height: 40vh;
+        width: 100%;
+    }
+
+    .page2-right {
+        height: 60vh;
+        padding: 1.5rem;
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+
+    .proyectos-title {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .proyectos-item {
+        font-size: 1.8rem;
+        gap: 0.8rem;
+    }
+
+    .proyectos-list {
+        gap: 0.8rem;
+    }
+
+    /* Page 3 - Modelado 3D */
+    .page3-main {
+        flex-direction: column;
+    }
+
+    .pictures-views {
+        flex-direction: column;
+        height: auto;
+        flex: 1;
+    }
+
+    .picture-view {
+        height: 33.33%;
+        width: 100%;
+    }
+
+    .thumbnails-gallery {
+        position: relative;
+        bottom: 0;
+        padding: 1rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        overflow-x: auto;
+    }
+
+    .thumbnail-item {
+        flex: 0 0 100px;
+        height: 70px;
+        width: 100px;
+    }
+
+    .page3-footer {
+        min-height: 350px;
+        padding: 2rem 1.5rem;
+    }
+
+    .page3-footer-content {
+        margin-left: 1rem;
+        gap: 1.5rem;
+    }
+
+    .modelado-oval {
+        width: 220px;
+        height: 65px;
+    }
+
+    .modelado-oval span {
+        font-size: 1rem;
+    }
+
+    .page3-placeholder-text {
+        font-size: 0.8rem;
+        max-width: 350px;
+    }
+
+    .purple-curve {
+        width: 400px;
+        height: 350px;
+    }
+
+    /* Page 4 - Motion Graphics */
     .motion-title {
-        font-size: 3rem;
+        font-size: 4rem;
         top: 2rem;
         left: 2rem;
     }
 
     .page4-main {
-        height: calc(100vh - 200px);
-        padding: 0;
+        height: calc(100vh - 280px);
     }
 
     .motion-main-content {
-        padding: 2rem;
+        padding: 2rem 2rem 0;
     }
 
     .main-video-container {
@@ -1385,30 +1627,393 @@ footer {
     }
 
     .page4-footer {
-        height: 300px;
-    }
-
-    .page4-main {
-        height: calc(100vh - 300px);
+        height: 280px;
     }
 
     .motion-gallery {
-        width: 90%;
+        width: 95%;
         padding: 1rem 1rem 0.5rem;
     }
 
     .videos-grid {
         grid-template-columns: repeat(5, 1fr);
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 
     .video-thumbnail {
         min-width: 0;
+        max-height: 100px;
+    }
+
+    .video-name {
+        font-size: 0.65rem;
     }
 
     .page4-footer-content {
         bottom: 0.5rem;
-        right: 2rem;
+        right: 1.5rem;
+    }
+
+    .red-curve {
+        width: 350px;
+        height: 300px;
+    }
+
+    /* Page 5 - Diseño Gráfico */
+    .page5-container {
+        flex-direction: column;
+    }
+
+    .grafico-gallery-container {
+        flex: 0 0 auto;
+        height: auto;
+        padding: 1.5rem;
+        order: 1;
+    }
+
+    .grafico-title {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .grafico-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .grafico-item {
+        gap: 0.5rem;
+    }
+
+    .grafico-name {
+        font-size: 1.2rem;
+    }
+
+    .grafico-arrow svg {
+        width: 0.8em;
+        height: 0.8em;
+    }
+
+    .grafico-display-container {
+        order: 2;
+        flex: 1;
+        padding: 1rem;
+    }
+
+    .grafico-display-wrapper {
+        padding-left: 0;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .grafico-image {
+        max-height: 80%;
+    }
+
+    .toku-collage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .page5-footer {
+        padding: 1rem 1.5rem;
+    }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+
+    /* Header */
+    header {
+        padding: 0.5rem 1rem;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    nav {
+        gap: 0.5rem;
+    }
+
+    .nav-item {
+        font-size: 0.6rem;
+        gap: 0.25rem;
+    }
+
+    .nav-dot {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Page 1 - Home */
+    .home-image {
+        max-width: 100%;
+    }
+
+    .cta-section {
+        right: 1rem;
+        bottom: 15%;
+    }
+
+    .cta-arrow {
+        width: 50px;
+        height: 50px;
+    }
+
+    .cta-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+
+    .social-link {
+        font-size: 0.65rem;
+    }
+
+    .separator {
+        font-size: 0.65rem;
+    }
+
+    /* Page 2 - Proyectos */
+    .page2-left {
+        height: 35vh;
+    }
+
+    .page2-right {
+        height: 65vh;
+        padding: 1rem;
+    }
+
+    .proyectos-title {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .proyectos-item {
+        font-size: 1.4rem;
+        gap: 0.5rem;
+    }
+
+    .proyectos-list {
+        gap: 0.6rem;
+    }
+
+    .arrow svg {
+        width: 0.8em;
+        height: 0.8em;
+    }
+
+    /* Page 3 - Modelado 3D */
+    .pictures-views {
+        flex: 1;
+    }
+
+    .picture-view-left,
+    .picture-view-right {
+        display: none;
+    }
+
+    .picture-view-center {
+        height: 100%;
+        width: 100%;
+    }
+
+    .thumbnails-gallery {
+        padding: 0.5rem;
+        gap: 0.4rem;
+    }
+
+    .thumbnail-item {
+        flex: 0 0 70px;
+        height: 50px;
+        width: 70px;
+        border-radius: 8px;
+    }
+
+    .page3-footer {
+        min-height: 300px;
+        padding: 1.5rem 1rem;
+    }
+
+    .page3-footer-content {
+        margin-left: 0.5rem;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .modelado-oval {
+        width: 180px;
+        height: 55px;
+    }
+
+    .modelado-oval span {
+        font-size: 0.85rem;
+    }
+
+    .page3-placeholder-text {
+        font-size: 0.7rem;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .page3-social-links {
+        justify-content: center;
+    }
+
+    .page3-social-links .social-link {
+        font-size: 0.7rem;
+    }
+
+    .purple-curve {
+        width: 280px;
+        height: 250px;
+        transform: rotate(-20deg) translate(100px, 150px);
+    }
+
+    /* Page 4 - Motion Graphics */
+    .motion-title {
+        font-size: 2.5rem;
+        top: 1.5rem;
+        left: 1rem;
+    }
+
+    .page4-main {
+        height: calc(100vh - 240px);
+    }
+
+    .motion-main-content {
+        padding: 1rem;
+    }
+
+    .main-video-container {
+        border-radius: 10px;
+    }
+
+    .page4-footer {
+        height: 240px;
+    }
+
+    .motion-gallery {
+        width: 100%;
+        padding: 0.75rem 0.5rem 0.5rem;
+    }
+
+    .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.3rem;
+    }
+
+    .video-thumbnail {
+        max-height: 80px;
+        border-radius: 6px;
+    }
+
+    .video-name {
+        font-size: 0.55rem;
+    }
+
+    .video-overlay {
+        padding: 0.5rem 0.4rem 0.4rem;
+    }
+
+    .page4-footer-content {
+        bottom: 0.3rem;
+        right: 1rem;
+    }
+
+    .page4-social-links .social-link {
+        font-size: 0.7rem;
+    }
+
+    .red-curve {
+        width: 250px;
+        height: 220px;
+        transform: rotate(-20deg) translate(100px, 150px);
+    }
+
+    /* Page 5 - Diseño Gráfico */
+    .grafico-gallery-container {
+        padding: 1rem;
+    }
+
+    .grafico-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .grafico-list {
+        gap: 0.5rem;
+    }
+
+    .grafico-name {
+        font-size: 1rem;
+    }
+
+    .grafico-display-container {
+        padding: 0.5rem;
+    }
+
+    .grafico-image {
+        max-height: 70%;
+    }
+
+    .toku-collage {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding: 0.4rem;
+    }
+
+    .collage-img:nth-child(3n) {
+        grid-column: span 1;
+    }
+
+    .page5-footer {
+        padding: 0.75rem 1rem;
+    }
+
+    .page5-social-links .social-link {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra Small Mobile (320px) */
+@media (max-width: 320px) {
+    nav {
+        gap: 0.3rem;
+    }
+
+    .nav-item {
+        font-size: 0.5rem;
+    }
+
+    .proyectos-title {
+        font-size: 2.8rem;
+    }
+
+    .proyectos-item {
+        font-size: 1.1rem;
+    }
+
+    .motion-title {
+        font-size: 2rem;
+    }
+
+    .grafico-title {
+        font-size: 2.5rem;
+    }
+
+    .grafico-name {
+        font-size: 0.85rem;
+    }
+
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
