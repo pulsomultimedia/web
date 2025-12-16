@@ -16,11 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Convertir scroll vertical a horizontal
     // Capturar evento en window para asegurar que funcione
     window.addEventListener('wheel', function (e) {
-        // Permitir scroll normal si estamos sobre el collage de Toku Brand
-        const tokuCollage = document.getElementById('toku-collage');
-        if (tokuCollage && tokuCollage.contains(e.target) && tokuCollage.classList.contains('show')) {
-            // Verificar si el collage realmente necesita scroll
-            if (tokuCollage.scrollHeight > tokuCollage.clientHeight) {
+        // Permitir scroll normal si estamos sobre un contenedor con scroll vertical (Toku Collage o Web Collage)
+        const scrollable = e.target.closest('.toku-collage, .web-collage');
+
+        if (scrollable) {
+            // Para toku-collage, verificar que tenga la clase 'show'
+            const isToku = scrollable.classList.contains('toku-collage');
+            const isWeb = scrollable.classList.contains('web-collage');
+
+            // Permitir scroll si:
+            // - Es web-collage (siempre visible)
+            // - Es toku-collage Y tiene clase 'show'
+            if ((isWeb || (isToku && scrollable.classList.contains('show'))) &&
+                scrollable.scrollHeight > scrollable.clientHeight) {
                 // Dejar que el evento se propague normalmente para el scroll vertical del div
                 return;
             }
@@ -428,6 +436,100 @@ document.addEventListener('DOMContentLoaded', function () {
                 behavior: 'smooth'
             });
         });
+    }
+
+    // Página 6: Desarrollo Web
+    const page6 = document.querySelector('.page-6');
+    const webItems = document.querySelectorAll('.web-item');
+    const webCollage = document.getElementById('web-scroll-view');
+
+    // Función para actualizar el collage web
+    function updateWebCollage(folder, name) {
+        if (!webCollage) return;
+
+        // Limpiar contenido actual
+        webCollage.innerHTML = '';
+
+        // Añadir 4 imágenes
+        for (let i = 1; i <= 4; i++) {
+            const img = document.createElement('img');
+            // Asumimos formato _1.png, _2.png, etc.
+            img.src = `assets/web/${folder}/${folder}_${i}.png`;
+            img.alt = `${name} ${i}`;
+            img.className = 'web-collage-img';
+
+            // Añadir evento error para intentar extensión jpg si png falla (opcional pero util)
+            img.onerror = function () {
+                this.src = `assets/web/${folder}/${folder}_${i}.jpg`;
+            };
+
+            webCollage.appendChild(img);
+        }
+
+        // Añadir sección final con título y enlace
+        const endContainer = document.createElement('div');
+        endContainer.className = 'web-end-section';
+
+        // Generar enlace aleatorio o placeholder (el usuario pidió random link)
+        const randomLinks = [
+            'https://example.com',
+            'https://google.com',
+            'https://github.com'
+        ];
+        const randomLink = randomLinks[Math.floor(Math.random() * randomLinks.length)];
+
+        endContainer.innerHTML = `
+            <h3 class="web-end-title">${name}</h3>
+            <a href="${randomLink}" class="web-end-link" target="_blank">VISITAR SITIO</a>
+        `;
+
+        webCollage.appendChild(endContainer);
+    }
+
+    // Event listeners para items
+    webItems.forEach(item => {
+        item.addEventListener('click', function () {
+            if (this.classList.contains('active')) return;
+
+            webItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+
+            const folder = this.getAttribute('data-folder');
+            const name = this.getAttribute('data-name');
+
+            // Fade out effect simple
+            webCollage.style.opacity = '0';
+            setTimeout(() => {
+                updateWebCollage(folder, name);
+                webCollage.style.opacity = '1';
+                // Reset scroll
+                webCollage.scrollTop = 0;
+            }, 300);
+        });
+    });
+
+    // Inicializar primer item al cargar
+    if (webItems.length > 0) {
+        const first = webItems[0];
+        updateWebCollage(first.getAttribute('data-folder'), first.getAttribute('data-name'));
+        // Hacer visible el collage inmediatamente
+        if (webCollage) {
+            webCollage.style.opacity = '1';
+        }
+    }
+
+    // Observer para animar entrada de página 6
+    if (page6) {
+        const page6Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    page6.classList.add('is-visible');
+                } else {
+                    page6.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        page6Observer.observe(page6);
     }
 });
 
