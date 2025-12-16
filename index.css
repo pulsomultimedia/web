@@ -1648,6 +1648,176 @@ footer {
     opacity: 0.7;
 }
 
+/* Página 8: Nosotros */
+.page-8 {
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 50;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.page8-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8rem 4rem 4rem;
+    min-height: 100vh;
+}
+
+.nosotros-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.page-8.is-visible .nosotros-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nosotros-logo {
+    height: 300px;
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(245, 32, 32, 0.3));
+}
+
+.nosotros-intro {
+    font-size: 1.8rem;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 800px;
+    letter-spacing: 0.02em;
+}
+
+.nosotros-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.nosotros-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.page-8.is-visible .nosotros-section:nth-child(1) {
+    transition-delay: 0.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-8.is-visible .nosotros-section:nth-child(2) {
+    transition-delay: 0.4s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nosotros-section-title {
+    font-family: 'BebasNeuePro', sans-serif;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    background: linear-gradient(135deg, #F52020 0%, #FF6201 50%, #FFB121 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nosotros-video-container {
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 50px rgba(245, 32, 32, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nosotros-video-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 60px rgba(245, 32, 32, 0.4);
+}
+
+.nosotros-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Footer de página 8 */
+.page8-footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 100;
+}
+
+.page8-footer-content {
+    display: flex;
+    justify-content: center;
+}
+
+.page8-social-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.social-link-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 50px;
+}
+
+.social-link-icon:hover {
+    border-color: #F52020;
+    background: rgba(245, 32, 32, 0.1);
+    transform: translateY(-3px);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transition: fill 0.3s ease;
+}
+
+.social-link-icon:hover .social-icon {
+    fill: #F52020;
+}
+
 /* ========================================
    RESPONSIVE STYLES
    ======================================== */
@@ -2473,4 +2643,124 @@ footer {
     height: 1em;
     fill: currentColor;
     display: block;
+}
+
+/* Responsive styles for Page 8 - Nosotros */
+@media (max-width: 1024px) {
+    .page8-container {
+        padding: 6rem 3rem 3rem;
+    }
+
+    .nosotros-logo {
+        height: 240px;
+    }
+
+    .nosotros-intro {
+        font-size: 1.5rem;
+    }
+
+    .nosotros-section-title {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page8-container {
+        padding: 5rem 2rem 2rem;
+    }
+
+    .nosotros-header {
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .nosotros-logo {
+        height: 200px;
+    }
+
+    .nosotros-intro {
+        font-size: 1.2rem;
+    }
+
+    .nosotros-content {
+        gap: 3rem;
+    }
+
+    .nosotros-section-title {
+        font-size: 3rem;
+    }
+
+    .page8-social-links {
+        gap: 2rem;
+    }
+
+    .social-link-icon {
+        font-size: 0.75rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page8-container {
+        padding: 4rem 1.5rem 1.5rem;
+    }
+
+    .nosotros-header {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .nosotros-logo {
+        height: 160px;
+    }
+
+    .nosotros-intro {
+        font-size: 1rem;
+    }
+
+    .nosotros-content {
+        gap: 2rem;
+    }
+
+    .nosotros-section-title {
+        font-size: 2.5rem;
+    }
+
+    .page8-footer {
+        padding: 2rem 1rem;
+    }
+
+    .page8-social-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .social-link-icon {
+        font-size: 0.7rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .social-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 320px) {
+    .nosotros-logo {
+        height: 120px;
+    }
+
+    .nosotros-intro {
+        font-size: 0.85rem;
+    }
+
+    .nosotros-section-title {
+        font-size: 2rem;
+    }
 }

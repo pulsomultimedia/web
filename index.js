@@ -16,6 +16,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // Convertir scroll vertical a horizontal
     // Capturar evento en window para asegurar que funcione
     window.addEventListener('wheel', function (e) {
+        // Verificar si estamos en la página Nosotros (page-8)
+        const page8 = e.target.closest('.page-8');
+        if (page8) {
+            const delta = e.deltaY;
+
+            // Si scrolleamos hacia arriba (delta < 0) y estamos en el top del contenedor
+            if (delta < 0 && page8.scrollTop === 0) {
+                // Prevenir el scroll vertical y navegar a la página anterior
+                e.preventDefault();
+                e.stopPropagation();
+
+                const pageWidth = window.innerWidth;
+                const currentScroll = scrollContainer.scrollLeft;
+                const targetScroll = Math.max(currentScroll - pageWidth, 0);
+
+                scrollContainer.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
+
+                return;
+            }
+
+            // En cualquier otro caso (scroll hacia abajo o no estamos en el top), permitir scroll vertical normal
+            return;
+        }
+
         // Permitir scroll normal si estamos sobre un contenedor con scroll vertical (Toku Collage o Web Collage)
         const scrollable = e.target.closest('.toku-collage, .web-collage');
 
@@ -296,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
         thumbnail.addEventListener('click', function () {
             const videoSrc = this.getAttribute('data-video');
             const videoName = this.getAttribute('data-name');
+            const link = this.getAttribute('data-link');
 
             if (videoSrc && mainVideo) {
                 // Cargar y mostrar el video
@@ -444,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const webCollage = document.getElementById('web-scroll-view');
 
     // Función para actualizar el collage web
-    function updateWebCollage(folder, name) {
+    function updateWebCollage(folder, name, link) {
         if (!webCollage) return;
 
         // Limpiar contenido actual
@@ -470,18 +498,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const endContainer = document.createElement('div');
         endContainer.className = 'web-end-section';
 
-        // Generar enlace aleatorio o placeholder (el usuario pidió random link)
-        const randomLinks = [
-            'https://example.com',
-            'https://google.com',
-            'https://github.com'
-        ];
-        const randomLink = randomLinks[Math.floor(Math.random() * randomLinks.length)];
-
         endContainer.innerHTML = `
             <h3 class="web-end-title">${name}</h3>
-            <a href="${randomLink}" class="web-end-link" target="_blank">VISITAR SITIO</a>
-        `;
+            <a href="${link}" class="web-end-link" target="_blank">VISITAR SITIO</a>`;
 
         webCollage.appendChild(endContainer);
     }
@@ -496,11 +515,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const folder = this.getAttribute('data-folder');
             const name = this.getAttribute('data-name');
+            const link = this.getAttribute('data-link');
 
             // Fade out effect simple
             webCollage.style.opacity = '0';
             setTimeout(() => {
-                updateWebCollage(folder, name);
+                updateWebCollage(folder, name, link);
                 webCollage.style.opacity = '1';
                 // Reset scroll
                 webCollage.scrollTop = 0;
@@ -511,7 +531,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicializar primer item al cargar
     if (webItems.length > 0) {
         const first = webItems[0];
-        updateWebCollage(first.getAttribute('data-folder'), first.getAttribute('data-name'));
+        updateWebCollage(first.getAttribute('data-folder'), first.getAttribute('data-name'), first.getAttribute('data-link'));
         // Hacer visible el collage inmediatamente
         if (webCollage) {
             webCollage.style.opacity = '1';
@@ -547,6 +567,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }, { threshold: 0.3 });
         page7Observer.observe(page7);
+    }
+
+    // Página 8: Nosotros
+    const page8 = document.querySelector('.page-8');
+
+    // Observer para animar entrada de página 8
+    if (page8) {
+        const page8Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    page8.classList.add('is-visible');
+                } else {
+                    page8.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        page8Observer.observe(page8);
     }
 
     // Manejar clicks en los items de proyectos para navegar a las páginas correspondientes
