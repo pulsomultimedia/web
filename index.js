@@ -111,11 +111,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentPage = Math.round(scrollLeft / pageWidth);
         const header = document.getElementById('global-header');
 
-        // Ocultar header en página 2 (índice 1)
-        if (currentPage === 1) {
-            header.classList.add('header-hidden');
+        const isMobile = window.innerWidth <= 768;
+
+        // Lógica de visibilidad del header
+        if (isMobile) {
+            // En móvil: Mostrar SOLO en página 1 (índice 0)
+            if (currentPage === 0) {
+                header.classList.remove('header-hidden');
+            } else {
+                header.classList.add('header-hidden');
+            }
         } else {
-            header.classList.remove('header-hidden');
+            // En desktop: Ocultar solo en página 2 (índice 1)
+            if (currentPage === 1) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
         }
 
         navLinks.forEach((link, index) => {
@@ -129,6 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Escuchar cambios en el scroll
     scrollContainer.addEventListener('scroll', updateActiveNav);
+
+    // Actualizar al redimensionar la ventana
+    window.addEventListener('resize', updateActiveNav);
 
     // Navegación por clic en los enlaces
     navLinks.forEach(link => {
