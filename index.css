@@ -1599,9 +1599,9 @@ footer {
 }
 
 .publicitaria-title {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'BebasNeuePro', sans-serif;
     font-size: 6rem;
-    font-weight: bolder;
+    font-weight: bold;
     color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -2074,6 +2074,7 @@ footer {
     /* Page 3 - Modelado 3D */
     .page3-main {
         flex-direction: column;
+        height: 90%;
     }
 
     .pictures-views {
@@ -2190,6 +2191,7 @@ footer {
     /* Page 5 - Diseño Gráfico */
     .page5-container {
         flex-direction: column;
+        height: 97dvh;
     }
 
     .grafico-gallery-container {
@@ -2228,11 +2230,12 @@ footer {
         order: 2;
         flex: 1;
         padding: 1rem;
+        height: 70%;
     }
 
     .grafico-display-wrapper {
         padding-left: 0;
-        justify-content: center;
+        justify-content: start;
         height: 100%;
     }
 
@@ -2910,8 +2913,8 @@ footer {
         flex-direction: column !important;
         align-items: center;
         gap: 1rem;
-        height: auto;
-        overflow-y: auto;
+        /* height: auto; */
+        overflow-y: scroll;
         padding: 0.5rem;
     }
 
@@ -2919,15 +2922,15 @@ footer {
     .grafico-image {
         max-width: 100% !important;
         max-height: none !important;
-        width: 100%;
-        height: auto;
+        /* width: 100%; */
+        /* height: auto; */
         object-fit: contain;
     }
 
     .grafico-image.grafico-mockup {
-        max-width: 100%;
-        width: 100%;
-        height: auto;
+        /* max-width: 100%; */
+        /* width: 100%; */
+        /* height: auto; */
     }
 
     /* === PÁGINA 6 - DESARROLLO WEB === */
