@@ -3070,6 +3070,7 @@ footer {
 
     .page8-footer {
         padding: 2rem 1rem;
+        display: none;
     }
 
     .page8-social-links {

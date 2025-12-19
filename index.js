@@ -301,6 +301,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     videoThumbnails.forEach(el => {
                         el.classList.add('animate-in');
                     });
+                    // Reproducir video desde el inicio si está activo
+                    if (mainVideo && mainVideo.classList.contains('active')) {
+                        mainVideo.currentTime = 0;
+                        mainVideo.play().catch(e => console.log('Error al reproducir video:', e));
+                    }
                 } else {
                     if (motionTitle) {
                         motionTitle.classList.remove('animate-in');
@@ -308,6 +313,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     videoThumbnails.forEach(el => {
                         el.classList.remove('animate-in');
                     });
+                    // Pausar video al salir de la página
+                    if (mainVideo) {
+                        mainVideo.pause();
+                    }
                 }
             });
         }, { threshold: 0.2 });
@@ -569,6 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Página 7: Campaña Publicitaria
     const page7 = document.querySelector('.page-7');
+    const publicitariaVideo = page7 ? page7.querySelector('.publicitaria-video') : null;
 
     // Observer para animar entrada de página 7
     if (page7) {
@@ -576,8 +586,17 @@ document.addEventListener('DOMContentLoaded', function () {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     page7.classList.add('is-visible');
+                    // Reproducir video desde el inicio
+                    if (publicitariaVideo) {
+                        publicitariaVideo.currentTime = 0;
+                        publicitariaVideo.play().catch(e => console.log('Error al reproducir video publicitaria:', e));
+                    }
                 } else {
                     page7.classList.remove('is-visible');
+                    // Pausar video al salir
+                    if (publicitariaVideo) {
+                        publicitariaVideo.pause();
+                    }
                 }
             });
         }, { threshold: 0.3 });
@@ -586,6 +605,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Página 8: Nosotros
     const page8 = document.querySelector('.page-8');
+    const nosotrosVideos = page8 ? page8.querySelectorAll('.nosotros-video') : [];
+    const firstVideo = nosotrosVideos[0];
+    const secondVideo = nosotrosVideos[1];
 
     // Observer para animar entrada de página 8
     if (page8) {
@@ -593,12 +615,71 @@ document.addEventListener('DOMContentLoaded', function () {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     page8.classList.add('is-visible');
+                    // Reproducir solo el primer video desde el inicio
+                    if (firstVideo) {
+                        firstVideo.currentTime = 0;
+                        firstVideo.play().catch(e => console.log('Error al reproducir video nosotros:', e));
+                    }
+                    // Asegurar que el segundo video esté pausado
+                    if (secondVideo) {
+                        secondVideo.pause();
+                        secondVideo.currentTime = 0;
+                    }
                 } else {
                     page8.classList.remove('is-visible');
+                    // Pausar todos los videos al salir de la página
+                    nosotrosVideos.forEach(video => {
+                        video.pause();
+                    });
                 }
             });
         }, { threshold: 0.3 });
         page8Observer.observe(page8);
+
+        // Observer para el segundo video - se reproduce cuando está visible dentro de page8
+        if (secondVideo) {
+            const secondVideoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Solo actuar si la página 8 está visible
+                    if (!page8.classList.contains('is-visible')) return;
+
+                    if (entry.isIntersecting) {
+                        // Pausar el primer video
+                        if (firstVideo) {
+                            firstVideo.pause();
+                        }
+                        // Reproducir el segundo video desde el inicio
+                        secondVideo.currentTime = 0;
+                        secondVideo.play().catch(e => console.log('Error al reproducir segundo video:', e));
+                    } else {
+                        // Pausar el segundo video cuando sale de vista
+                        secondVideo.pause();
+                        // Si scrolleamos hacia arriba, reproducir el primer video
+                        if (firstVideo) {
+                            firstVideo.currentTime = 0;
+                            firstVideo.play().catch(e => console.log('Error al reproducir primer video:', e));
+                        }
+                    }
+                });
+            }, {
+                root: page8, // Observar dentro de la página 8
+                threshold: 0.6 // 60% del video debe estar visible
+            });
+
+            secondVideoObserver.observe(secondVideo);
+        }
+    }
+
+    // Navegación del logo de Pulso en la página Nosotros a la página de inicio
+    const nosotrosLogoLink = document.getElementById('nosotros-logo-link');
+    if (nosotrosLogoLink) {
+        nosotrosLogoLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            scrollContainer.scrollTo({
+                left: 0, // Página 1 (índice 0)
+                behavior: 'smooth'
+            });
+        });
     }
 
     // Manejar clicks en los items de proyectos para navegar a las páginas correspondientes
@@ -614,7 +695,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 targetPage = 2; // page-3
             } else if (text === 'MOTION GRAPHICS') {
                 targetPage = 3; // page-4
-            } else if (text === 'DISEÑO GÁFICO') {
+            } else if (text === 'DISEÑO GRÁFICO') {
                 targetPage = 4; // page-5
             } else if (text === 'DESARROLLO WEB') {
                 targetPage = 5; // page-6
