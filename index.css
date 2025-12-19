@@ -88,7 +88,7 @@ body {
 /* Páginas */
 .page {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     flex-shrink: 0;
     position: relative;
     scroll-snap-align: start;
@@ -2247,6 +2247,11 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
         padding: 0.5rem;
+    }
+
+    /* Deshabilitar scroll del wrapper cuando toku-collage está visible */
+    .grafico-display-wrapper:has(.toku-collage.show) {
+        overflow: hidden !important;
     }
 
     .page5-footer {
